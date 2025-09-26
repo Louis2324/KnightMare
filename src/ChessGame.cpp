@@ -1,4 +1,4 @@
-#include <ChessGame.h>
+#include "ChessGame.h"
 #include <iostream>
 
 ChessGame::ChessGame() {
