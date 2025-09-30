@@ -66,7 +66,7 @@ bool ChessGame::pathClear(int fr, int fc, int tr, int tc)const {
     return true;
 }
 
-  bool ChessGame::isValidMove(const Move&m , bool whiteTurn )const {
+bool ChessGame::isValidMove(const Move&m , bool whiteTurn )const {
     if(!inBounds(m.toRow , m.toCol)) return false;
     char piece = getPiece(m.fromRow , m.fromCol);
     if(piece == '.') return false;
@@ -96,7 +96,7 @@ bool ChessGame::pathClear(int fr, int fc, int tr, int tc)const {
     return false;
   }
 
-  std::vector<Move> ChessGame::getAllLegalMoves(bool whiteTurn) const {
+std::vector<Move> ChessGame::getAllLegalMoves(bool whiteTurn) const {
     std::vector<Move> allMoves;
     for(int r = 0 ; r<8 ; r++) {
         for (int c = 0 ; c<8 ; c++) {
@@ -120,3 +120,20 @@ bool ChessGame::pathClear(int fr, int fc, int tr, int tc)const {
     }
     return allMoves;
   }
+
+bool ChessGame::makeRandomMove( bool whiteTurn)  {
+    auto moves = getAllLegalMoves(whiteTurn);
+    if(moves.empty()) {
+        std::cout<<(whiteTurn?"White":"Black")  <<" Has no legal moves";
+        return false;
+    }
+
+    int idx = std::rand() % moves.size();
+    Move chosen = moves[idx];
+
+    
+    std::cout << (whiteTurn ? "White" : "Black")
+              << " AI plays: (" << chosen.fromRow << "," << chosen.fromCol
+              << ") -> (" << chosen.toRow << "," << chosen.toCol << ")\n";
+    return makeMove(chosen);
+} 
