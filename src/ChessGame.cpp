@@ -27,3 +27,13 @@ void ChessGame::printBoard() const {
     }
     std::cout<<"  a b c d e f g h \n";
 }
+
+bool ChessGame::makeMove(const Move& m) {
+    if(!inBounds(m.fromRow , m.fromCol) || !inBounds(m.toRow,m.toCol)) return false;
+    char piece = getPiece(m.fromRow,m.fromCol);
+    if(piece == '.') return false;
+
+    board[m.fromRow][m.fromCol] = '.';
+    board[m.toRow][m.toCol] = piece;
+    
+}
