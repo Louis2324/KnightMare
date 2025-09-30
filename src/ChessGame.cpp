@@ -33,9 +33,9 @@ bool ChessGame::makeMove(const Move& m) {
     char piece = getPiece(m.fromRow,m.fromCol);
     if(piece == '.') return false;
 
-    board[m.fromRow][m.fromCol] = '.';
-    board[m.toRow][m.toCol] = piece;
-
+    setPiece(m.toRow , m.toCol , piece);
+    setPiece(m.fromRow , m.fromCol , '.');
+    return true;
 }
 
 void ChessGame::setPiece(int r, int c, char piece) {
