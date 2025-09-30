@@ -26,7 +26,7 @@ void ChessGame::printBoard() const {
             std::cout << getPiece(i,j) << " ";
         std::cout<<"\n";
     }
-    std::cout<<"\n  a b c d e f g h \n";
+    std::cout<<" a b c d e f g h \n";
 }
 
 bool ChessGame::makeMove(const Move& m) {
