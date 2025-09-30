@@ -1,5 +1,6 @@
 #include "ChessGame.h"
 #include "PieceMoves.h"
+#include "Move.h"
 #include <iostream>
 
 ChessGame::ChessGame() {
@@ -26,7 +27,7 @@ void ChessGame::printBoard() const {
             std::cout << getPiece(i,j) << " ";
         std::cout<<"\n";
     }
-    std::cout<<" a b c d e f g h \n";
+    std::cout<<"   a b c d e f g h \n";
 }
 
 bool ChessGame::makeMove(const Move& m) {
@@ -133,7 +134,6 @@ bool ChessGame::makeRandomMove( bool whiteTurn)  {
 
     
     std::cout << (whiteTurn ? "White" : "Black")
-              << " AI plays: (" << chosen.fromRow << "," << chosen.fromCol
-              << ") -> (" << chosen.toRow << "," << chosen.toCol << ")\n";
+              << " AI plays:" << chosen.toString() <<"\n";
     return makeMove(chosen);
 } 
