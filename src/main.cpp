@@ -1,32 +1,50 @@
 #include <iostream>
 #include "ChessGame.h"
 
-
 int main() {
     ChessGame game;
     std::string input;
+    bool whiteTurn = true;
 
-    std::cout<<"Welcome to KnightMare CLI chess \n";
-    std::cout<<"Initial Board Setup \n\n\n";
+    std::cout << "Welcome to KnightMare CLI Chess\n";
+    std::cout << "Initial Board Setup\n\n";
     game.printBoard();
-    
-    while(true) {
-        std::cout<<"\n \n \n";
-        std::cout<<"Enter your move (e.g,e2e4) or quit: ";
-        std::getline(std::cin,input);
 
-        if(input == "quit" || input == "exit" ) break;
-        Move m;
-        if(!Move::parseAlgebraic(input,m)) {
-            std::cout<<"Invalid move format \n Try something like e2e4 initial file and rank then file and rank you want to go to";
-            continue;
-        }
-        if(!game.makeMove(m)) {
-            std::cout<<"Move Invalid! Try Again. \n";
-            continue;
+    while (true) {
+        std::cout << "\n";
+
+        if (whiteTurn) {
+            std::cout << "Enter your move (e.g., e2e4) or 'quit': ";
+            std::getline(std::cin, input);
+
+            if (input == "quit" || input == "exit")
+                break;
+
+            Move m;
+            if (!Move::parseAlgebraic(input, m)) {
+                std::cout << "Invalid move format! Use something like e2e4.\n";
+                continue;
+            }
+
+            if (!game.makeMove(m)) {
+                std::cout << "Illegal move! Try again.\n";
+                continue;
+            }
+
+            std::cout << "You played: " << input << "\n";
+            game.printBoard();
+        } else {
+            std::cout << "Black is thinking...\n";
+            if (!game.makeRandomMove(false)) {
+                std::cout << "Black has no legal moves! Game over.\n";
+                break;
+            }
+            game.printBoard();
         }
 
-        game.printBoard();
+        whiteTurn = !whiteTurn; 
     }
+
+    std::cout << "Thanks for playing against KnightMare!\n";
     return 0;
 }
