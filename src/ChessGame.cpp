@@ -73,7 +73,7 @@ bool ChessGame::isValidMove(const Move&m , bool whiteTurn )const {
     if(whiteTurn && !isWhite(piece)) return false;
     if(!whiteTurn && isWhite(piece)) return false;
     char target = getPiece(m.toRow , m.toCol);
-    if(target !='.' & isWhite(piece) == isWhite(target)) return false;
+    if(target !='.' && isWhite(piece) == isWhite(target)) return false;
 
     std::vector<Move> possible;
     switch(std::tolower(piece)) {
