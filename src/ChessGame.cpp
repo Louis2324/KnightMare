@@ -35,5 +35,10 @@ bool ChessGame::makeMove(const Move& m) {
 
     board[m.fromRow][m.fromCol] = '.';
     board[m.toRow][m.toCol] = piece;
-    
+
+}
+
+void ChessGame::setPiece(int r, int c, char piece) {
+    if(!inBounds(r, c)) return; 
+    board[r][c] = piece;
 }
