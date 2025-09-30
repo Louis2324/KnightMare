@@ -18,6 +18,7 @@ class ChessGame {
      bool isWhite(char piece) const;
      std::vector<Move> getAllLegalMoves(bool whiteTurn) const;
      bool isValidMove(const Move&m , bool whiteTurn ) const;
+     bool makeRandomMove( bool whiteTurn);
     private:
      std::vector<std::vector<char>> board;
      bool pathClear(int fr, int fc , int tr , int tc) const;
