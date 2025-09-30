@@ -10,7 +10,7 @@ class ChessGame {
      bool makeMove(const Move& m);
      bool inBounds(int r , int c) const {return r>=0 && r<8 && c>= 0 && c<8 ; }
      char getPiece(int r , int c) const {return board[r][c]; }
-     char setPiece(int r , int c , char piece);
+     void setPiece(int r , int c , char piece);
     private:
      std::vector<std::vector<char>> board;
 };
