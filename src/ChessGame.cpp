@@ -54,7 +54,7 @@ bool ChessGame::pathClear(int fr, int fc, int tr, int tc)const {
     int dc = (tc > fc) ? 1 : (tc < fc)? -1 : 0; 
 
     int r = fr + dr;
-    int c = fr + dc;
+    int c = fc + dc;
 
     while(r != tr || c != tc) {
         if(!inBounds(r,c)) return false;
