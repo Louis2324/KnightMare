@@ -10,5 +10,4 @@ class PieceMoves {
     static std::vector<Move> getBishopMoves(int r, int c);
     static std::vector<Move> getQueenMoves(int r, int c);
     static std::vector<Move> getKingMoves(int r, int c);
-
 };
