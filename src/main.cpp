@@ -26,7 +26,7 @@ int main() {
                 continue;
             }
 
-            if (!game.makeMove(m)) {
+            if (!game.makeMove(m,whiteTurn)) {
                 std::cout << "Illegal move! Try again.\n";
                 continue;
             }
