@@ -14,7 +14,7 @@ bool Move::parseAlgebraic(const std::string& s , Move& out) {
     if(tRank<'1' || tRank>'8') return false;
 
     out.fromCol = fFile - 'a';
-    out.toCol = fFile - 'a';
+    out.toCol = tFile - 'a';
     out.fromRow = 8 - (fRank - '0');
     out.toRow = 8 - (tRank - '0');
     return true;
