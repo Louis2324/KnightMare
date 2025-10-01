@@ -7,6 +7,7 @@ ChessGame::ChessGame() {
     initBoard();
 }
 
+
 void ChessGame::initBoard () {
     board = {
         {'r','n','b','q','k','b','n','r'},
@@ -30,11 +31,9 @@ void ChessGame::printBoard() const {
     std::cout<<"   a b c d e f g h \n";
 }
 
-bool ChessGame::makeMove(const Move& m) {
-    if(!inBounds(m.fromRow , m.fromCol) || !inBounds(m.toRow,m.toCol)) return false;
+bool ChessGame::makeMove(const Move& m , bool whiteTurn) {
+    if(!isValidMove(m,whiteTurn)) return false;
     char piece = getPiece(m.fromRow,m.fromCol);
-    if(piece == '.') return false;
-
     setPiece(m.toRow , m.toCol , piece);
     setPiece(m.fromRow , m.fromCol , '.');
     return true;
@@ -135,5 +134,5 @@ bool ChessGame::makeRandomMove( bool whiteTurn)  {
     
     std::cout << (whiteTurn ? "White" : "Black")
               << " AI plays:" << chosen.toString() <<"\n";
-    return makeMove(chosen);
+    return makeMove(chosen,whiteTurn);
 } 
