@@ -34,8 +34,15 @@ void ChessGame::printBoard() const {
 bool ChessGame::makeMove(const Move& m , bool whiteTurn) {
     if(!isValidMove(m,whiteTurn)) return false;
     char piece = getPiece(m.fromRow,m.fromCol);
+    char captured = getPiece(m.toCol,m.toCol);
     setPiece(m.toRow , m.toCol , piece);
     setPiece(m.fromRow , m.fromCol , '.');
+
+    if(inCheck(whiteTurn)) {
+        setPiece(m.fromRow,m.fromCol,piece);
+        setPiece(m.toRow,m.toCol,captured);
+        return false;
+    }
     return true;
 }
 
@@ -136,3 +143,26 @@ bool ChessGame::makeRandomMove( bool whiteTurn)  {
               << " AI plays:" << chosen.toString() <<"\n";
     return makeMove(chosen,whiteTurn);
 } 
+
+bool ChessGame::inCheck(bool whiteTurn) const {
+  int KingR = -1 , KingC = -1;
+  std::vector<std::pair<int,int>> enemies;
+  for(int r = 0 ; r < 8 ; r++){
+    for(int c = 0 ; c<8 ; c++) {
+        char p = getPiece(r,c);
+        if(p == '.') continue;
+
+        if((isWhite(p) == whiteTurn) && (std::tolower(p) == 'k')) {
+            KingR = r ; KingC = c;
+        }else if(isWhite(p) != whiteTurn) {
+            enemies.push_back({r,c});
+        }
+    }
+  }
+  if(KingR == -1) return false;
+  for(auto [r,c] : enemies) {
+    Move m{r,c,KingR,KingC};
+    if(isValidMove(m,!whiteTurn)) return true;
+  }
+  return false;
+}
