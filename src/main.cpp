@@ -4,13 +4,13 @@
 int main() {
     ChessGame game;
     std::string input;
-    bool whiteTurn = true;
+    bool whiteTurn = true , gameOver = false;
 
     std::cout << "Welcome to KnightMare CLI Chess\n";
     std::cout << "Initial Board Setup\n\n";
     game.printBoard();
 
-    while (true) {
+    while (!gameOver) {
         std::cout << "\n";
 
         if (whiteTurn) {
@@ -43,6 +43,16 @@ int main() {
         }
 
         whiteTurn = !whiteTurn; 
+        if(game.isCheckMate(whiteTurn)) {
+            std::cout<< (whiteTurn?"White" : "Black") << "is checkmated! \n";
+            std::cout<< (whiteTurn?"Black":"White") << " loses \n";
+            gameOver = true;
+        }
+
+        if(game.isStaleMate(whiteTurn)) {
+            std::cout<< "Stalemate it's a draw \n";
+            gameOver = true;
+        }
     }
 
     std::cout << "Thanks for playing against KnightMare!\n";
