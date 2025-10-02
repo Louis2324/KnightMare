@@ -97,6 +97,11 @@ bool ChessGame::isValidMove(const Move&m , bool whiteTurn )const {
             if(std::tolower(piece) == 'r' || std::tolower(piece) == 'b' || std::tolower(piece) == 'q'){
                if(!pathClear(m.fromRow,m.fromCol,m.toRow,m.toCol)) return false;
             }
+
+            ChessGame copy = *this;
+            copy.setPiece(m.toRow,m.toCol,piece);
+            copy.setPiece(m.fromRow,m.fromCol,'.');
+            if(copy.inCheck(whiteTurn)) return false;
             return true;
         }
     }
@@ -165,4 +170,16 @@ bool ChessGame::inCheck(bool whiteTurn) const {
     if(isValidMove(m,!whiteTurn)) return true;
   }
   return false;
+}
+
+bool ChessGame::isCheckMate(bool whiteturn) const {
+    if(!inCheck(whiteturn)) return false;
+    auto moves = getAllLegalMoves(whiteturn);
+    return moves.empty();
+}
+
+bool ChessGame::isStaleMate(bool whiteturn) const {
+    if(inCheck(whiteturn)) return false;
+    auto moves = getAllLegalMoves(whiteturn);
+    return moves.empty();
 }
