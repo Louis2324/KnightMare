@@ -21,6 +21,8 @@ class ChessGame {
      bool makeRandomMove( bool whiteTurn);
 
      bool inCheck(bool whiteturn) const;
+     bool isCheckMate(bool whiteturn) const;
+     bool isStaleMate(bool whiteturn) const;
     private:
      std::vector<std::vector<char>> board;
      bool pathClear(int fr, int fc , int tr , int tc) const;
