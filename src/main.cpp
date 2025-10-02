@@ -44,8 +44,8 @@ int main() {
 
         whiteTurn = !whiteTurn; 
         if(game.isCheckMate(whiteTurn)) {
-            std::cout<< (whiteTurn?"White" : "Black") << "is checkmated! \n";
-            std::cout<< (whiteTurn?"Black":"White") << " loses \n";
+            std::cout<< (whiteTurn?"White" : "Black") << " is checkmated! \n";
+            std::cout<< (whiteTurn?"Black":"White") << " wins \n";
             gameOver = true;
         }
 
