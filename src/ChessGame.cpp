@@ -145,7 +145,7 @@ bool ChessGame::makeRandomMove( bool whiteTurn)  {
 
     
     std::cout << (whiteTurn ? "White" : "Black")
-              << " AI plays:" << chosen.toString() <<"\n";
+              << " plays:" << chosen.toString() <<"\n\n\n\n";
     return makeMove(chosen,whiteTurn);
 } 
 
