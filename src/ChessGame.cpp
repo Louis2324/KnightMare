@@ -84,7 +84,7 @@ bool ChessGame::isValidMove(const Move&m , bool whiteTurn )const {
 
     std::vector<Move> possible;
     switch(std::tolower(piece)) {
-        case 'p' : possible = PieceMoves::getPawnMoves(m.fromRow,m.fromCol,isWhite(piece)); break;
+        case 'p' : possible = PieceMoves::getPawnMoves(m.fromRow,m.fromCol,isWhite(piece),*this); break;
         case 'r' : possible = PieceMoves::getRookMoves(m.fromRow,m.fromCol); break;
         case 'n' : possible = PieceMoves::getKnightMoves(m.fromRow,m.fromCol); break;
         case 'b' : possible = PieceMoves::getBishopMoves(m.fromRow,m.fromCol); break;
@@ -117,7 +117,7 @@ std::vector<Move> ChessGame::getAllLegalMoves(bool whiteTurn) const {
             if(whiteTurn != isWhite(piece)) continue;
             std::vector<Move> pieceMoves;
             switch (std::tolower(piece)) {
-                case 'p': pieceMoves = PieceMoves::getPawnMoves(r,c,isWhite(piece)); break;
+                case 'p': pieceMoves = PieceMoves::getPawnMoves(r,c,isWhite(piece),*this); break;
                 case 'n': pieceMoves = PieceMoves::getKnightMoves(r,c); break;
                 case 'r': pieceMoves = PieceMoves::getRookMoves(r,c); break;
                 case 'b': pieceMoves = PieceMoves::getBishopMoves(r,c); break;
