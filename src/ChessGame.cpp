@@ -34,7 +34,7 @@ void ChessGame::printBoard() const {
 bool ChessGame::makeMove(const Move& m , bool whiteTurn) {
     if(!isValidMove(m,whiteTurn)) return false;
     char piece = getPiece(m.fromRow,m.fromCol);
-    char captured = getPiece(m.toCol,m.toCol);
+    char captured = getPiece(m.toRow,m.toCol);
     setPiece(m.toRow , m.toCol , piece);
     setPiece(m.fromRow , m.fromCol , '.');
 
