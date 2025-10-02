@@ -1,15 +1,25 @@
 #include "PieceMoves.h"
 #include "Move.h"
+#include "ChessGame.h"
 
-std::vector<Move> PieceMoves::getPawnMoves(int r, int c, bool white) {
+std::vector<Move> PieceMoves::getPawnMoves(int r, int c, bool white , const ChessGame& game) {
     std::vector <Move> moves;
     int dir = white? -1: 1;
-    moves.push_back({r,c,r+dir,c});
+
+    if(game.inBounds(r + dir,c) && game.getPiece(r+dir,c) == '.') {
+        moves.push_back({r,c,r+dir,c});
+    }
+
     if((white && r == 6) || (!white && r == 1)) {
+      if (game.getPiece(r + dir, c) == '.' && game.getPiece(r + 2*dir, c) == '.')
         moves.push_back({r,c,r+ 2*dir,c});
     }
-    moves.push_back({r,c,r+dir, c-1});
-    moves.push_back({r,c,r+dir, c+1});
+   
+   if (game.inBounds(r + dir, c - 1) && game.getPiece(r + dir, c - 1) != '.' &&game.isWhite(game.getPiece(r + dir, c - 1)) != white)
+        moves.push_back({r, c, r + dir, c - 1});
+
+    if (game.inBounds(r + dir, c + 1) && game.getPiece(r + dir, c + 1) != '.' && game.isWhite(game.getPiece(r + dir, c + 1)) != white)
+        moves.push_back({r, c, r + dir, c + 1});
 
     return moves;
 }
