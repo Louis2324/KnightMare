@@ -1,33 +1,39 @@
-﻿# KnightMare
+# KnightMare
 
-**KnightMare** is a command-line C++ chess engine that lets you play against an AI opponent of adjustable difficulty.  
-All gameplay happens in the terminal using **standard chess notation**, making it lightweight and less crowded.
-
----
+KnightMare is a command-line C++ chess engine that lets you play against an AI
+opponent with adjustable difficulty. Gameplay happens in the terminal using
+standard coordinate notation such as `e2e4` and `g1f3`.
 
 ## Features
 
-- Command-line chess engine (CLI)
-- Standard chess rules: moves, turn-taking, check/checkmate detection
-- Input moves using **algebraic notation** (e.g., `e2e4`, `g1f3`)
-- Adjustable AI difficulty levels:
-  - **Low** – 400 ELO (random/legal moves)
-  - **Mid-Low** – 600 ELO
-  - **High** – 800 ELO
-  - **Extreme** – 1000 ELO
-- Modular design for easy expansion (AI improvements, move history)
+- Command-line chess engine
+- Legal move handling and turn-taking
+- Check and checkmate detection
+- Adjustable AI difficulty levels
+- Modular C++ design using STL containers
 
----
+## Requirements
 
-## 🛠 Requirements and how to run: 
+- A C++17-compatible compiler such as `g++`
+- Git Bash and `build.bat` on Windows, or `make` on Linux/macOS
 
-- A C++17-compatible compiler (e.g. `g++`)
-- Your platform's build tool:
-  - **Windows**: Git Bash + `build.bat`
-  - **Linux/macOS**: `make`
+## Build and run
 
----
+On Windows:
 
+```bash
+build.bat
+```
 
+On Linux/macOS:
 
+```bash
+make
+```
 
+Run the resulting executable from the project directory.
+
+## Game Jam Series
+
+KnightMare is part of the **[Game Jam Series](https://github.com/Louis2324/game-jam-series)**,
+a collection of games and experiments built from scratch.
